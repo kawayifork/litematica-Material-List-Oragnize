@@ -1,3 +1,4 @@
+// This code is from https://github.com/eligrey/FileSaver.js
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
     define([], factory);
