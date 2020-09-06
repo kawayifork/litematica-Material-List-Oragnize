@@ -60,7 +60,7 @@ $(document).ready(function () {
             text += textSort("redStone");
 
         } else {
-            for (let data of dataList) {
+            for (let data of sortData) {
                 text += data.item + ", " + data.count + ", " + fixed(set(data.count)) + ", " + fixed(shulkBox(data.count)) + ", " + fixed(shulkChest(data.count)) + "\r\n";
             }
         }
