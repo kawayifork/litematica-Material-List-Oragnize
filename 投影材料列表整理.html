@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>投影材料列表整理</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="html2canvas.min.js"></script>
+    <script src="Analysis.js"></script>
+    <style>
+        body {
+            font-family: 楷体, KaiTi, 楷体_GB2312, KaiTi_GB2312;
+        }
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            display: none;
+        }
+
+        span {
+            cursor: pointer;
+            color: red;
+        }
+
+        span:hover {
+            color: blue;
+        }
+
+        #sb {
+            width: 5%;
+        }
+        
+        .save {
+            display: none;
+        }
+
+        .select:hover {
+            background-color: lightblue !important;
+        }
+
+        .colored td {
+            border-color: orange;
+        }
+
+        .creature td {
+            border-color: green;
+        }
+
+        .build td {
+            border-color: blue;
+        }
+
+        .redStone td {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>上传材料文件（.csv）</h3>
+    <input type="file" id="file" accept=".csv" value="">
+    <ul id="fileDisplay"></ul>
+    <h3>材料列表</h3>
+    <p><input type="radio" name="sort" value="count" checked="checked">按数量排序 <input type="radio" name="sort"
+            value="kind">按种类排序 高亮超过<input type="number" id="sb" min = 0 value = 1>盒的物品 <button id="load" onclick="getDataTable();">加载</button> <button id="pic" class = "save"> 保存为截图</button>
+        <button id="text" class = "save">保存为txt</button></p>
+    <p><span style="color:orange;">橙色</span>-染色方块， <span style="color:green;">绿色</span>-生物相关， <span
+            style="color:blue;">蓝色</span>-建筑方块， <span style="color:red;">红色</span>-红石相关</p>
+    <table border=1 id="material">
+        <tr>
+            <th class = "option">&nbsp;&nbsp;</th>
+            <th>材料</th>
+            <th>数量</th>
+            <th>组</th>
+            <th>潜影盒</th>
+            <th>潜影盒箱</th>
+            <th class = "option">&nbsp;&nbsp;</th>
+        </tr>
+        <tr id="colored1"></tr>
+        <tr id="creature1"></tr>
+        <tr id="build1"></tr>
+        <tr id="redStone1"></tr>
+    </table><br>
+    <table border=1 id="deleted">
+        <tr>
+            <th>&nbsp;&nbsp;</th>
+            <th>材料</th>
+            <th>数量</th>
+            <th>组</th>
+            <th>潜影盒</th>
+            <th>潜影盒箱</th>
+        </tr>
+        <tr id="colored3"></tr>
+        <tr id="creature3"></tr>
+        <tr id="build3"></tr>
+        <tr id="redStone3"></tr>
+    </table>
+</body>
+
+</html>
