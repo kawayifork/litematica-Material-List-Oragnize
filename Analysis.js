@@ -1,4 +1,3 @@
-// This code is from https://github.com/niklasvh/html2canvas
 var fileReader = new FileReader();
 var dataList = [];
 var sortData = [];
