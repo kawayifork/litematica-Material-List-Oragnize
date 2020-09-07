@@ -5,39 +5,39 @@ var deleted = [];
 var check = [];
 var date = new Date();
 var comData = [];
-//#region 方块
-var colored = ["羊毛", "地毯", "旗帜", "床", "玻璃板", "玻璃", "带釉", "陶瓦", "粉末", "混凝", "潜影盒"];
-var block2 = ["矿", "台阶", "花盆", "雪", "冰", "末地", "紫珀", "灯笼", "海晶", "锁链", "岩", "蛋糕", "菌丝", "草方块", "下界砖"];
-var fence = "栅栏";
-var redSt = ["漏斗", "盒", "TNT", "火把", "红石", "器", "活塞", "门", "压力板", "按钮", "拉杆", "绊线钩", "铁轨", "粘液", "蜜块", "标", "锚", "黑曜石", "磁石"];
-var mob = ["蛋", "龙首", "的头", "头颅", "蜘蛛网", "骨块", "蜂", "蜜"];
-var work = ["台", "炉", "机", "砂轮", "锅", "桶", "箱", "营", "钟", "铁砧", "架", "梯子", "潮涌核心"];
-var block1 = ["铁", "金", "远古", "石", "块", "砖", "砂", "土", "沙"];
-var plant = ["白桦", "深色", "橡木", "橡树", "云杉", "丛林", "金合欢", "绯红", "诡异", "菌", "灌木", "蕨", "花", "兰", "菊", "香", "绒球葱", "玫瑰", "向日葵", "牡丹", "蒲公英", "虞美人", "蘑菇", "竹子", "甘蔗", "仙人掌", "藤", "干草块", "瓜", "种子", "果", "豆", "疣", "下界苗", "睡莲", "珊瑚", "海带", "海泡菜", "海绵"];
-var noNeed = ["基岩", "水桶", "海草", "草丛", "草径"];
+//#region Block
+var colored = ["Wool", "Carpet", "Banner", "Bed", "Pane", "Glass", "Powder", "Concrete", "Glazed", "Terracotta", "Shulker"];
+var work = ["Table", "Stand", "Lectern", "Furnace", "Smoker", "Loom", "Cutter", "Cauldron", "Grind", "Composter", "Barrel", "Chest", "box", "Anvil", "Bell", "Campfire", "shelf", "Scaffolding", "Ladder", "Beacon", "Conduit"];
+var block2 = ["Brick", "Andesite", "Nylium", "Pot", "Lantern", "Basalt", "Ice", "Quartz", "End", "Purpur", "Chain", "Cake"];
+var redSt = ["Hopper", "Note", "TNT", "Torch", "Redstone", "Detector", "Dropper", "Dispenser", "Observer", "Piston", "oor", "Pressure", "Button", "Lever", "Tripwire", "Rail", "Slime", "Honey Block", "Target", "Respawn", "Obsidian", "Lode"];
+var plant = ["Birch", "Dark Oak", "Oak", "Spruce", "Jungle", "Acacia", "Crimson", "Warped", "Dead Bush", "Fern", "Rose", "Allium", "Azure", "Orchid", "Dandelion", "lower", "Tulip", "Daisy", "Peony", "Poppy", "Lil", "hroom", "Bamboo", "Cane", "Cactus", "Vines", "Bale", "Melon", "Pumpkin", "Jack", "Seed", "Sweet","Cocoa", "Nether", "Chorus", "Coral", "Kelp", "Pickle", "Sponge"];
+var block1 = ["Block", "Clay", "tone", "Sand", "Soil", "Ore", "Bar", "Nether", "Dirt", "Prismarine", "Podzol", "Mycelium", "Granite", "Gravel", "Diorite", "Ancient"];
+var mob = ["Bee", "comb","Cobweb", "Head", "Egg", "Skull", "Bone"];
 var creature = plant.concat(mob);
-var build = ["矿", "远古", "煤炭", "石块", "铁块", "栏杆", "锁链", "灯笼", "金块", "末地", "紫珀", "石英", "黑石", "下界砖", "下界岩", "菌岩", "玄武岩", "荧石", "岩浆块", "海晶", "安山岩", "花岗岩", "闪长岩", "平滑石", "圆石", "苔石", "石头", "石砖", "砖块", "砖", "石", "砂岩", "沙", "土", "菌丝", "草方块", "花盆", "雪", "冰", "蛋糕"];
+var build = ["Ore", "Ancient", "Block of", "Lapis","Bars", "Chain", "Lantern", "End", "Purpur", "Quartz", "Blackstone", "Nether", "Nylium", "Basalt", "Glowstone", "Magma", "Prismarine", "Andesite", "Granite", "Diorite", "Smooth Stone", "Mossy", "Cobble", "Brick", "Stone", "Sandstone", "Sand", "Soil", "Dirt", "Podzol", "Mycelium", "Grass Block", "Gravel", "Clay", "Pot", "Snow", "Ice", "rack", "Cake"];
 var redStone = redSt.concat(work);
-//栅栏
-//旗帜 潜影盒 羊毛 地毯 床 玻璃 陶瓦 混凝
+var noNeed = ["Bedrock", "Bucket", "Seagrass", "Path"];
+//Banner Bed Carpet Concrete Terracotta Shulker Glass Wool 
 
-//台 炉 机 营 桶 箱 铁砧 砂轮 钟 锅 架 信标 潮涌核心 梯子
-//漏斗 盒 tnt 器 红石 活塞 压力板 按钮 拉杆 绊线钩 门 铁轨 粘液 蜜块
+//Rail Barrel Button Bell Cauldron Chest Detector Hooper Composter Obsidian Dispenser Dropper Pressure door box Lectern Lever Piston Observer Redstone Respawn Slime TNT Target Tripwire
+//Beacon Furnace shelf Stand Campfire Table Conduit Ladder Loom Scaffolding Smoker Torch Anvil
 
-//矿 铁 金 块 石 砂 岩 砖 土 沙
-//末地 灯 下界 花盆 雪 冰 蛋糕
+//Acacia Birch Oak Jungle Spruce Crimson Warped Bush
+//Allium Azure Orchid Dandelion lower Lil Tulip Daisy Peony Poppy Rose Bamboo Coral hroom Cactus Chorus Melon Pumpkin Jack Cocoa Fern Grass Bale Kelp Pickle Sponge Cane Vines
 
-//头 蜘蛛网 海 蜂 蜜 蛋
-//树 木 菌 草 蕨 兰 菊 香 绒球葱 玫瑰 向日葵 牡丹 蒲公英 虞美人 竹子 甘蔗 藤 睡莲 珊瑚 果 豆 仙人掌 蘑菇 海绵 瓜
+//Block Clay tone Brick Ore Iron Dirt Nylium Prismarine Podzol Mycelium Granite Gravel Diorite Ancient 
+//Andesite Lantern Basalt Ice Nether Quartz End Purpur Cake 
 
-//基岩 水桶
+//Bee Cobweb Head Egg Skull
+
+//Bedrock
+
 //#endregion
-
 $(document).ready(function () {
     $("#file").change(function (event) {
         let files = event.target.files;
         let fileName = files[0].name;
-        // 数据
+        // Data
         fileReader.readAsText(files[0], "gbk");
         fileReader.onload = () => {
             dataList = fileReader.result.split('\n');
@@ -52,7 +52,7 @@ $(document).ready(function () {
         getPic(document.getElementById('material'));
     });
     $("#text").click(function () {
-        let text = "材料  数量  组  潜影盒  潜影盒箱\r\n";
+        let text = "Block  Count  Stack  ShulkerBox  ShulkerChest\r\n";
         if (sorted) {
             text += textSort("colored", colored);
             text += textSort("creature", creature);
@@ -82,7 +82,7 @@ function getDataList() {
     dataList = newData;
     sortItem();
     sortData.reverse();
-    //console.log(sortData);
+    console.log(sortData);
     //console.log(dataList);
 }
 
@@ -99,6 +99,7 @@ function getDataTable() {
         $(".option").show();
         if (sort == "count") {
             sorted = false;
+            console.log(sortData);
             sortData.sort(function (a, b) { return Number(b.count) - Number(a.count); });
             for (let i = 0; i < sortData.length; i++) {
                 $("#material").append("<tr class = 'select unsorted' id = 't" + i + "'><td class = 'option'><span onclick = 'deleteRow(" + i + ");'>X</span></td><td>" + sortData[i].item + "</td><td>" + sortData[i].count + "</td><td>" + fixed(set(sortData[i].count)) + "</td><td>" + fixed(shulkBox(sortData[i].count)) + "</td><td>" + fixed(shulkChest(sortData[i].count)) + "</td><td class = 'option'><input type = 'checkbox' onclick = 'done(" + i + ");' id = " + i + " ></td></tr>");
@@ -138,12 +139,12 @@ function getDataTable() {
             tableSort("redStone", 1, redStone);
         }
         $(".save").css("display", "inline-block");
-        //compare();
-        //compare1();
+        compare();
+        compare1();
     }
 }
 
-//#region 选项
+//#region Options
 function deleteRow(i) {
     let newData = new Array();
     for (let data of sortData) {
@@ -197,7 +198,7 @@ function done(i) {
 }
 //#endregion
 
-//#region 显示
+//#region Display
 function set(count) {
     return Number(count) / 64;
 }
@@ -222,7 +223,7 @@ function highlight(i, sb) {
 }
 //#endregion
 
-//#region 分类
+//#region Sort
 function sortItem() {
     sortData = [];
     for (let data of dataList) {
@@ -232,8 +233,6 @@ function sortItem() {
             sortData.push({ "item": item, "count": count, "type": "colored" });
         } else if (findItem(item, block2)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
-        } else if (item.includes(fence)) {
-            sortData.push({ "item": item, "count": count, "type": "creature" });
         } else if (findItem(item, redSt)) {
             sortData.push({ "item": item, "count": count, "type": "redStone" });
         } else if (findItem(item, mob)) {
@@ -317,7 +316,7 @@ function tableSort(type, n, array) {
 }
 //#endregion
 
-//#region 导出
+//#region Save
 function getPic(element) {
     html2canvas(element).then(function (canvas) {
         canvas.toBlob(function (blob) {
@@ -344,7 +343,8 @@ function textSort(type, array) {
 }
 //#endregion
 
-// 测试比较（防止遗漏物品）
+//#region Compare test(to avoid missing block)
+// the data read from the file
 function compare() {
     let uninvloved = new Array();
     let invloved = new Array();
@@ -361,6 +361,7 @@ function compare() {
     }
     console.log(uninvloved);
 }
+// the data sorted in the table
 function compare1() {
     let uninvloved = new Array();
     let invloved = new Array();
@@ -377,3 +378,4 @@ function compare1() {
     }
     console.log(uninvloved);
 }
+//#endregion

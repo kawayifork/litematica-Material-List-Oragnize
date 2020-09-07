@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Litematica Material List Oragnize</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="FileSaver.js"></script>
+    <script src="html2canvas.min.js"></script>
+    <script src="Analysis.js"></script>
+    <style>
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            text-align: center;
+            display: none;
+        }
+
+        span {
+            cursor: pointer;
+            color: red;
+        }
+
+        span:hover {
+            color: blue;
+        }
+
+        #sb {
+            width: 5%;
+        }
+        
+        .save {
+            display: none;
+        }
+
+        .select:hover {
+            background-color: lightblue !important;
+        }
+
+        .colored td {
+            border-color: orange;
+        }
+
+        .creature td {
+            border-color: green;
+        }
+
+        .build td {
+            border-color: blue;
+        }
+
+        .redStone td {
+            border-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Upload material list（.csv）</h3>
+    <input type="file" id="file" accept=".csv" value="">
+    <ul id="fileDisplay"></ul>
+    <h3>Material List</h3>
+    <p><input type="radio" name="sort" value="count" checked="checked">Sort by amount <input type="radio" name="sort"
+            value="kind">Sorted by kind  <button id="load" onclick="getDataTable();">Load</button> <button id="pic" class = "save"> Save As Picture</button>
+        <button id="text" class = "save">Save As txt</button></p>
+    <p>Highlight the Block with Over<input type="number" id="sb" min = 0 value = 1>Shulkerbox(s)</p>
+    <p><span style="color:orange;">Orange</span>-Dyed, <span style="color:green;">Green</span>-Creatures, <span
+            style="color:blue;">Blue</span>-Builds, <span style="color:red;">Red</span>-Redstone</p>
+    <table border=1 id="material">
+        <tr>
+            <th class = "option">&nbsp;&nbsp;</th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Stack</th>
+            <th>ShulkerBox</th>
+            <th>ShulkerChest</th>
+            <th class = "option">&nbsp;&nbsp;</th>
+        </tr>
+        <tr id="colored1"></tr>
+        <tr id="creature1"></tr>
+        <tr id="build1"></tr>
+        <tr id="redStone1"></tr>
+    </table><br>
+    <table border=1 id="deleted">
+        <tr>
+            <th>&nbsp;&nbsp;</th>
+
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Stack</th>
+            <th>ShulkerBox</th>
+            <th>ShulkerChest</th>
+        </tr>
+        <tr id="colored3"></tr>
+        <tr id="creature3"></tr>
+        <tr id="build3"></tr>
+        <tr id="redStone3"></tr>
+    </table>
+</body>
+
+</html>
