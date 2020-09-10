@@ -3,6 +3,7 @@ var dataList = [];
 var sortData = [];
 var deleted = [];
 var check = [];
+var sorted = false;
 var date = new Date();
 var comData = [];
 //#region 方块
@@ -14,7 +15,7 @@ var mob = ["蛋", "龙首", "的头", "头颅", "蜘蛛网", "骨块", "蜂", "�
 var work = ["台", "炉", "机", "砂轮", "锅", "桶", "箱", "营", "钟", "铁砧", "架", "梯子", "潮涌核心"];
 var block1 = ["铁", "金", "远古", "石", "块", "砖", "砂", "土", "沙"];
 var plant = ["白桦", "深色", "橡木", "橡树", "云杉", "丛林", "金合欢", "绯红", "诡异", "菌", "灌木", "蕨", "花", "兰", "菊", "香", "绒球葱", "玫瑰", "向日葵", "牡丹", "蒲公英", "虞美人", "蘑菇", "竹子", "甘蔗", "仙人掌", "藤", "干草块", "瓜", "种子", "果", "豆", "疣", "下界苗", "睡莲", "珊瑚", "海带", "海泡菜", "海绵"];
-var noNeed = ["基岩", "水桶", "海草", "草丛", "草径"];
+var noNeed = ["基岩", "水桶", "海草", "草丛"];
 var creature = plant.concat(mob);
 var build = ["矿", "远古", "煤炭", "石块", "铁块", "栏杆", "锁链", "灯笼", "金块", "末地", "紫珀", "石英", "黑石", "下界砖", "下界岩", "菌岩", "玄武岩", "荧石", "岩浆块", "海晶", "安山岩", "花岗岩", "闪长岩", "平滑石", "圆石", "苔石", "石头", "石砖", "砖块", "砖", "石", "砂岩", "沙", "土", "菌丝", "草方块", "花盆", "雪", "冰", "蛋糕"];
 var redStone = redSt.concat(work);
@@ -59,7 +60,7 @@ $(document).ready(function () {
             text += textSort("build", build);
             text += textSort("redStone", redStone);
         } else {
-            for (let data of sortData) {
+            for (let data of dataList) {
                 text += data.item + ", " + data.count + ", " + fixed(set(data.count)) + ", " + fixed(shulkBox(data.count)) + ", " + fixed(shulkChest(data.count)) + "\r\n";
             }
         }
@@ -224,6 +225,7 @@ function highlight(i, sb) {
 
 //#region 分类
 function sortItem() {
+    let newData = new Array();
     sortData = [];
     for (let data of dataList) {
         let item = data.item;
@@ -244,8 +246,11 @@ function sortItem() {
             sortData.push({ "item": item, "count": count, "type": "creature" });
         } else if (findItem(item, block1)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
+        } else if (item == "草径") {
+            newData.push({ "item": "草方块", "count": count, "type": "build" });
         }
     }
+    path2Grass(newData);
 }
 function findItem(item, array) {
     let exist = false;
@@ -257,15 +262,19 @@ function findItem(item, array) {
     }
     return exist;
 }
-function isItem1(item, array) {
+function path2Grass(array) {
     let exist = false;
-    for (let data of array) {
-        if (item == data.item) {
-            exist = true;
-            break;
+    if (array.length > 0) {
+        for (let data of sortData) {
+            if (data.item == array[0].item) {
+                data.count = (Number(array[0].count) + Number(data.count)).toString();
+                exist = true;
+            }
+        }
+        if (!exist) {
+            sortData.push(array[0]);
         }
     }
-    return exist;
 }
 function isItem(item, array) {
     let exist = true;
@@ -294,10 +303,10 @@ function tableSort(type, n, array) {
                         highlight(i, sb);
                         for (let data of check) {
                             if (sortData[i].item == data.item) {
-                                let id = "#" + i;
-                                let id1 = "#t" + i;
-                                $(id).prop("checked", true)
-                                $(id1).css("background-color", "grey");
+                                let id1 = "#" + i;
+                                let id2 = "#t" + i;
+                                $(id1).prop("checked", true)
+                                $(id2).css("background-color", "grey");
                             }
                         }
                     }
