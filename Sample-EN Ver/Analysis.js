@@ -11,9 +11,9 @@ var colored = ["Wool", "Carpet", "Banner", "Bed", "Pane", "Glass", "Powder", "Co
 var work = ["Table", "Stand", "Lectern", "Furnace", "Smoker", "Loom", "Cutter", "Cauldron", "Grind", "Composter", "Barrel", "Chest", "box", "Anvil", "Bell", "Campfire", "shelf", "Scaffolding", "Ladder", "Beacon", "Conduit"];
 var block2 = ["Brick", "Andesite", "Nylium", "Pot", "Lantern", "Basalt", "Ice", "Quartz", "End", "Purpur", "Chain", "Cake"];
 var redSt = ["Hopper", "Note", "TNT", "Torch", "Redstone", "Detector", "Dropper", "Dispenser", "Observer", "Piston", "oor", "Pressure", "Button", "Lever", "Tripwire", "Rail", "Slime", "Honey Block", "Target", "Respawn", "Obsidian", "Lode"];
-var plant = ["Birch", "Dark Oak", "Oak", "Spruce", "Jungle", "Acacia", "Crimson", "Warped", "Dead Bush", "Fern", "Rose", "Allium", "Azure", "Orchid", "Dandelion", "lower", "Tulip", "Daisy", "Peony", "Poppy", "Lil", "hroom", "Bamboo", "Cane", "Cactus", "Vines", "Bale", "Melon", "Pumpkin", "Jack", "Seed", "Sweet","Cocoa", "Nether", "Chorus", "Coral", "Kelp", "Pickle", "Sponge"];
+var plant = ["Birch", "Dark Oak", "Oak", "Spruce", "Jungle", "Acacia", "Crimson", "Warped", "Dead Bush", "Fern", "Rose", "Allium", "Azure", "Orchid", "Dandelion", "lower", "Tulip", "Daisy", "Peony", "Poppy", "Lil", "hroom", "Bamboo", "Cane", "Cactus", "Vines", "Bale", "Melon", "Pumpkin", "Jack", "Seed", "Sweet","Cocoa", "Sprouts", "Chorus", "Coral", "Kelp", "Pickle", "Sponge"];
 var block1 = ["Block", "Clay", "tone", "Sand", "Soil", "Ore", "Bar", "Nether", "Dirt", "Prismarine", "Podzol", "Mycelium", "Granite", "Gravel", "Diorite", "Ancient"];
-var mob = ["Bee", "comb","Cobweb", "Head", "Egg", "Skull", "Bone"];
+var mob = ["Bee", "comb", "Cobweb", "Head", "Egg", "Skull", "Bone"];
 var creature = plant.concat(mob);
 var build = ["Ore", "Ancient", "Block of", "Lapis","Bars", "Chain", "Lantern", "End", "Purpur", "Quartz", "Blackstone", "Nether", "Nylium", "Basalt", "Glowstone", "Magma", "Prismarine", "Andesite", "Granite", "Diorite", "Smooth Stone", "Mossy", "Cobble", "Brick", "Stone", "Sandstone", "Sand", "Soil", "Dirt", "Podzol", "Mycelium", "Grass Block", "Gravel", "Clay", "Pot", "Snow", "Ice", "rack", "Cake"];
 var redStone = redSt.concat(work);
@@ -229,13 +229,9 @@ function sortItem() {
             sortData.push({ "item": item, "count": count, "type": "colored" });
         } else if (findItem(item, block2)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
-        } else if (findItem(item, redSt)) {
+        } else if (findItem(item, redStone)) {
             sortData.push({ "item": item, "count": count, "type": "redStone" });
-        } else if (findItem(item, mob)) {
-            sortData.push({ "item": item, "count": count, "type": "creature" });
-        } else if (findItem(item, work)) {
-            sortData.push({ "item": item, "count": count, "type": "redStone" });
-        } else if (findItem(item, plant)) {
+        } else if (findItem(item, creature)) {
             sortData.push({ "item": item, "count": count, "type": "creature" });
         } else if (findItem(item, block1)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
