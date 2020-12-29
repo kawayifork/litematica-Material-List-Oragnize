@@ -7,7 +7,8 @@ Firefox 20+, Opera 15+, Chrome (I guess Safari 10.1+ could work, but I didn't te
 
 Functions
 --
-- Does not include Bedrock, Water Bucket, Seagrass and Grass Path.
+- Does not include Water Bucket, Seagrass ,Grass amd other blocks that cannot get in survival.
+- Covnert the Grass_Path into Grass.
 - Only count the missing block and automatically turns into Stack, ShulkerBox, ShulkerChest.
 - Can choose to highlight the block with over how many ShulkerBox.
 - Can delete the block and add the deleted block back to the table.
@@ -39,4 +40,5 @@ Thanks for Aschin for helping and many greatful advices.
 
 Feel free to rewrite it into your language, just need to mark my name on it and let me know.
 
-You only need to rewrite the arrays in '#region Block' and you can change the sort logic in the 'sortItem()' if needed.
+You only need to rewrite the arrays in '#region Block' and Grass_Path and Grass in 'sortItem()'.
+You can also change the sort logic in the 'sortItem()' if needed.
