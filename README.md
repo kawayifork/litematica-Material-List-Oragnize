@@ -1,5 +1,5 @@
 # litematica Material List Oragnize
-A simple tool for oragnizing litematica material list. Can wirk with 1.16 new blocks.
+A simple tool for oragnizing litematica material list. Can work with 1.16 new blocks.
 
 Supported Browsers
 --
@@ -29,7 +29,7 @@ How to Use
 3. Builds - as it means
 4. Redstone - redstone, work block, and some tool block
 
-Referemce:
+Reference:
 --
 Screencapture: https://github.com/niklasvh/html2canvas
 
