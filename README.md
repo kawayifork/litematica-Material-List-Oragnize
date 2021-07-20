@@ -1,5 +1,5 @@
 # litematica Material List Oragnize
-A simple tool for oragnizing litematica material list. Can work with 1.16 new blocks.
+A simple tool for oragnizing litematica material list. Can work with 1.17.1 new blocks.
 
 Supported Browsers
 --
