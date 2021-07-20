@@ -7,17 +7,17 @@ var sorted = false;
 var date = new Date();
 var comData = [];
 //#region 方块
-var colored = ["羊毛", "地毯", "旗帜", "床", "玻璃板", "玻璃", "带釉", "陶瓦", "粉末", "混凝", "潜影盒"];
-var block2 = ["矿", "台阶", "花盆", "雪", "冰", "末地", "紫珀", "灯笼", "海晶", "锁链", "岩", "蛋糕", "菌丝", "草方块", "下界砖"];
+var colored = ["羊毛", "地毯", "旗帜", "床", "玻璃板", "玻璃", "带釉", "陶瓦", "粉末", "混凝土", "潜影盒", "蜡烛"];
+var block2 = ["矿", "花盆", "雪", "冰", "末地", "紫珀", "灯笼", "海晶", "晶", "锁链", "岩", "蛋糕", "菌丝", "草方块", "下界砖"];
 var fence = "栅栏";
-var redSt = ["漏斗", "盒", "TNT", "火把", "红石", "器", "活塞", "门", "压力板", "按钮", "拉杆", "线", "铁轨", "粘液", "蜜块", "标", "锚", "黑曜石", "磁石"];
-var mob = ["蛋", "龙首", "的头", "头颅", "蜘蛛网", "骨块", "蜂", "蜜脾"];
-var work = ["台", "炉", "机", "砂轮", "锅", "桶", "箱", "营", "钟", "铁砧", "架", "梯子", "潮涌核心"];
-var block1 = ["铁", "金", "远古", "石", "块", "砖", "砂", "土", "沙"];
-var plant = ["白桦", "深色", "橡木", "橡树", "云杉", "丛林", "金合欢", "绯红", "诡异", "菌", "灌木", "蕨", "花", "兰", "菊", "香", "绒球葱", "玫瑰", "向日葵", "牡丹", "蒲公英", "虞美人", "蘑菇", "竹子", "甘蔗", "仙人掌", "藤", "干草块", "瓜", "种子", "果", "豆", "疣", "下界苗", "睡莲", "珊瑚", "海带", "海泡菜", "海绵"];
+var redSt = ["漏斗", "盒", "TNT", "火把", "红石", "器", "活塞", "门", "压力板", "按钮", "拉杆", "绊线钩", "铁轨", "黏液", "蜜块", "标", "锚", "黑曜石", "磁石", "避雷针", "铁砧", "砂轮", "切石机"];
+var mob = ["蛋", "龙首", "的头", "头颅", "蜘蛛网", "骨块", "蜂", "蜜"];
+var work = ["机", "台", "炉", "锅", "桶", "箱", "营", "钟", "架", "梯子", "潮涌核心"];
+var block1 = ["铁", "金", "铜", "远古", "台阶", "石", "块", "砖", "砂", "土", "沙"];
+var plant = ["白桦", "深色", "橡木", "橡树", "云杉", "丛林", "金合欢", "杜鹃", "绯红", "诡异", "菌", "灌木", "苔藓", "蕨", "花", "兰", "菊", "香", "绒球葱", "玫瑰", "向日葵", "牡丹", "蒲公英", "虞美人", "蘑菇", "竹子", "甘蔗", "仙人掌", "藤", "垂", "发光", "干草块", "瓜", "种子", "果", "豆", "疣", "下界苗", "睡莲", "珊瑚", "海带", "海泡菜", "海绵"];
 var noNeed = ["基岩", "水桶", "海草", "草丛"];
 var creature = plant.concat(mob);
-var build = ["矿", "远古", "煤炭", "石块", "铁块", "栏杆", "锁链", "灯笼", "金块", "末地", "紫珀", "石英", "黑石", "下界砖", "下界岩", "菌岩", "玄武岩", "荧石", "岩浆块", "海晶", "安山岩", "花岗岩", "闪长岩", "平滑石", "圆石", "苔石", "石头", "石砖", "砖块", "砖", "石", "砂岩", "沙", "土", "菌丝", "草方块", "花盆", "雪", "冰", "蛋糕"];
+var build = ["矿", "远古", "滴水", "煤炭", "石块", "铁块", "栏杆", "锁链", "灯笼", "金块", "铜", "末地", "紫珀", "石英", "黑石", "下界砖", "下界岩", "菌岩", "玄武岩", "荧石", "岩浆块", "海晶", "安山岩", "花岗岩", "闪长岩", "晶", "深板岩", "平滑石", "圆石", "苔石", "石头", "石砖", "砖块", "砖", "石", "砂岩", "沙", "土", "岩", "菌丝", "草方块", "花盆", "雪", "冰", "蛋糕"];
 var redStone = redSt.concat(work);
 //栅栏
 //旗帜 潜影盒 羊毛 地毯 床 玻璃 陶瓦 混凝
@@ -139,7 +139,7 @@ function getDataTable() {
             tableSort("redStone", 1, redStone);
         }
         $(".save").css("display", "inline-block");
-        compare();
+        //compare();
         compare1();
     }
 }
@@ -230,16 +230,22 @@ function sortItem() {
     for (let data of dataList) {
         let item = data.item;
         let count = data.count;
-        if (findItem(item, colored)) {
-            sortData.push({ "item": item, "count": count, "type": "colored" });
-        } else if (findItem(item, creature)) {
-            sortData.push({ "item": item, "count": count, "type": "creature" });
-        } else if (findItem(item, block2)) {
+        if (findItem(item, block2)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
-        } else if (findItem(item, redStone)) {
+        } else if (findItem(item, colored)) {
+            sortData.push({ "item": item, "count": count, "type": "colored" });
+        } else if (item.includes(fence)) {
+            sortData.push({ "item": item, "count": count, "type": "creature" });
+        } else if (findItem(item, redSt)) {
             sortData.push({ "item": item, "count": count, "type": "redStone" });
+        } else if (findItem(item, plant)) {
+            sortData.push({ "item": item, "count": count, "type": "creature" });
+        } else if (findItem(item, mob)) {
+            sortData.push({ "item": item, "count": count, "type": "creature" });
         } else if (findItem(item, block1)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
+        } else if (findItem(item, work)) {
+            sortData.push({ "item": item, "count": count, "type": "redStone" });
         } else if (item == "草径") {
             newData.push({ "item": "草方块", "count": count, "type": "build" });
         }

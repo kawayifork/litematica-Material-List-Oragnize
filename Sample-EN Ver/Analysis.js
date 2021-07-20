@@ -7,15 +7,15 @@ var check = [];
 var date = new Date();
 var comData = [];
 //#region Block
-var colored = ["Wool", "Carpet", "Banner", "Bed", "Pane", "Glass", "Powder", "Concrete", "Glazed", "Terracotta", "Shulker"];
+var colored = ["Wool", "Carpet", "Banner", "Bed", "Pane", "Glass", "Powder", "Concrete", "Glazed", "Terracotta", "Shulker", "Candle"];
 var work = ["Table", "Stand", "Lectern", "Furnace", "Smoker", "Loom", "Cutter", "Cauldron", "Grind", "Composter", "Barrel", "Chest", "box", "Anvil", "Bell", "Campfire", "shelf", "Scaffolding", "Ladder", "Beacon", "Conduit"];
-var block2 = ["Brick", "Andesite", "Nylium", "Pot", "Lantern", "Basalt", "Ice", "Quartz", "End", "Purpur", "Chain", "Cake"];
-var redSt = ["Hopper", "Note", "TNT", "Torch", "Redstone", "Detector", "Dropper", "Dispenser", "Observer", "Piston", "oor", "Pressure", "Button", "Lever", "Tripwire", "String", "Rail", "Slime", "Honey Block", "Target", "Respawn", "Obsidian", "Lode"];
-var plant = ["Birch", "Dark Oak", "Oak", "Spruce", "Jungle", "Acacia", "Crimson", "Warped", "Dead Bush", "Fern", "Rose", "Allium", "Azure", "Orchid", "Dandelion", "lower", "Tulip", "Daisy", "Peony", "Poppy", "Lil", "hroom", "Bamboo", "Cane", "Cactus", "Vines", "Bale", "Melon", "Pumpkin", "Jack", "Seed", "Sweet","Cocoa", "Sprouts", "Chorus", "Coral", "Kelp", "Pickle", "Sponge"];
-var block1 = ["Block", "Clay", "tone", "Sand", "Soil", "Ore", "Bar", "Nether", "Dirt", "Prismarine", "Podzol", "Mycelium", "Granite", "Gravel", "Diorite", "Ancient"];
+var block2 = ["Ore", "Copper", "Calcite", "Amethyst", "Deepslate", "Brick", "Andesite", "Nylium", "Pot", "Lantern", "Basalt", "Snow", "Ice", "Quartz", "End", "Purpur", "Chain", "Cake", "Tuff"];
+var redSt = ["Hopper", "Note", "TNT", "Torch", "Redstone", "Detector", "Dropper", "Dispenser", "Observer", "Piston", "oor", "Pressure", "Button", "Lever", "Tripwire", "Rail", "Slime", "Honey Block", "Target", "Respawn", "Obsidian", "Lode", "Lightning"];
+var plant = ["Birch", "Dark Oak", "Oak", "Spruce", "Jungle", "Acacia", "Azalea", "Crimson", "Warped", "Dead Bush", "Fern", "Rose", "Allium", "Azure", "Orchid", "Dandelion", "lower", "Tulip", "Daisy", "Peony", "Poppy", "Lil", "hroom", "Bamboo", "Cane", "Cactus", "Vines", "Root", "Moss", "Spore", "Dripleaf", "Glow", "Bale", "Melon", "Pumpkin", "Jack", "Seed", "Sweet", "Cocoa", "Nether", "Chorus", "Coral", "Kelp", "Pickle", "Sponge"];
+var block1 = ["Block", "Clay", "tone", "Sand", "Soil", "Bar", "Nether", "Dirt", "Prismarine", "Podzol", "Mycelium", "Granite", "Gravel", "Diorite", "Ancient"];
 var mob = ["Bee", "comb", "Cobweb", "Head", "Egg", "Skull", "Bone"];
 var creature = plant.concat(mob);
-var build = ["Ore", "Ancient", "Block of", "Lapis","Bars", "Chain", "Lantern", "End", "Purpur", "Quartz", "Blackstone", "Nether", "Nylium", "Basalt", "Glowstone", "Magma", "Prismarine", "Andesite", "Granite", "Diorite", "Smooth Stone", "Mossy", "Cobble", "Brick", "Stone", "Sandstone", "Sand", "Soil", "Dirt", "Podzol", "Mycelium", "Grass Block", "Gravel", "Clay", "Pot", "Snow", "Ice", "rack", "Cake"];
+var build = ["Ore", "Ancient", "Block of", "Lapis", "Bars", "Chain", "Lantern", "Copper", "End", "Purpur", "Quartz", "Blackstone", "Nether", "Nylium", "Basalt", "Glowstone", "Magma", "Prismarine", "Andesite", "Granite", "Diorite", "Amethyst", "Deepslate", "Smooth Stone", "Mossy", "Cobble", "Brick", "Stone", "Sandstone", "Sand", "Soil", "Dirt", "Podzol", "Mycelium", "Grass Block", "Calcite", "Dripstone", "Tuff", "Gravel", "Clay", "Pot", "Snow", "Ice", "rack", "Cake"];
 var redStone = redSt.concat(work);
 //Banner Bed Carpet Concrete Terracotta Shulker Glass Wool 
 
@@ -225,14 +225,18 @@ function sortItem() {
     for (let data of dataList) {
         let item = data.item;
         let count = data.count;
-        if (findItem(item, colored)) {
-            sortData.push({ "item": item, "count": count, "type": "colored" });
-        } else if (findItem(item, block2)) {
+        if (findItem(item, block2)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
-        } else if (findItem(item, redStone)) {
+        } else if (findItem(item, redSt)) {
             sortData.push({ "item": item, "count": count, "type": "redStone" });
-        } else if (findItem(item, creature)) {
+        } else if (findItem(item, mob)) {
             sortData.push({ "item": item, "count": count, "type": "creature" });
+        } else if (findItem(item, work)) {
+            sortData.push({ "item": item, "count": count, "type": "redStone" });
+        } else if (findItem(item, plant)) {
+            sortData.push({ "item": item, "count": count, "type": "creature" });
+        } else if (findItem(item, colored)) {
+            sortData.push({ "item": item, "count": count, "type": "colored" });
         } else if (findItem(item, block1)) {
             sortData.push({ "item": item, "count": count, "type": "build" });
         } else if (item == "Grass Path") {
@@ -377,4 +381,3 @@ function compare1() {
     }
     console.log(uninvloved);
 }
-//#endregion
